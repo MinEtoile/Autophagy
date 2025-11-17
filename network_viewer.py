@@ -92,9 +92,9 @@ def load_centrality_data(network_name, prefix='autophagy'):
     try:
         # 폴더 경로 설정
         if prefix == 'research_autophagy':
-            folder = 'research'
+            folder = 'Research'
         else:
-            folder = 'all'
+            folder = 'All'
         
         centrality_file = os.path.join(folder, f'{prefix}_{network_name}_centrality_analysis.csv')
         if os.path.exists(centrality_file):
