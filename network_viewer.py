@@ -832,10 +832,10 @@ def main():
     if network_data is None:
         # 폴더 경로 설정
         if prefix == 'research_autophagy':
-            folder = 'research'
+            folder = 'Research'
             ppi_file = os.path.join(folder, f'{prefix}_protein_ppi_network_edgelist.csv')
         else:
-            folder = 'all'
+            folder = 'All'
             ppi_file = os.path.join(folder, f'{prefix}_ppi_network_edgelist.csv')
         ggi_file = os.path.join(folder, f'{prefix}_gene_network_edgelist.csv')
         st.error(f"네트워크 데이터를 로드할 수 없습니다. 다음 파일들이 있는지 확인해주세요:\n\n"
@@ -854,4 +854,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
