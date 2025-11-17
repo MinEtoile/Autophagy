@@ -54,11 +54,11 @@ def load_network_data(prefix='autophagy'):
     try:
         # 폴더 경로 설정
         if prefix == 'research_autophagy':
-            folder = 'research'
+            folder = 'Research'
             # 연구용: research_autophagy_protein_ppi_network_edgelist.csv
             ppi_file = os.path.join(folder, f'{prefix}_protein_ppi_network_edgelist.csv')
         else:
-            folder = 'all'
+            folder = 'All'
             # 전체용: autophagy_ppi_network_edgelist.csv
             ppi_file = os.path.join(folder, f'{prefix}_ppi_network_edgelist.csv')
         
@@ -159,9 +159,9 @@ def create_interactive_network(graph, centrality_df, selected_nodes=None, max_no
     
     # 엣지 색상 설정 (네트워크 타입에 따라)
     if network_type == 'PPI':
-        edge_color = "rgba(100, 149, 237, 0.4)"  # 코른플라워 블루
+        edge_color = "rgba(34, 139, 34, 0.4)"  # 포레스트 그린
     else:
-        edge_color = "rgba(255, 140, 0, 0.4)"  # 다크 오렌지
+        edge_color = "rgba(255, 215, 0, 0.4)"  # 골드
     
     # Pyvis 네트워크 생성 (더 밝고 예쁜 배경)
     net = Network(height="600px", width="100%", bgcolor="#f8f9fa", font_color="#2c3e50")
@@ -248,46 +248,46 @@ def create_interactive_network(graph, centrality_df, selected_nodes=None, max_no
                 betweenness = centrality_dict[node]['betweenness']
                 # 네트워크 타입에 따른 색상 팔레트
                 if network_type == 'PPI':
-                    # PPI: 파란색 계열
+                    # PPI: 초록색 계열
                     if betweenness < 0.33:
                         t = betweenness / 0.33
-                        r = int(30 + (0 - 30) * t)
-                        g = int(144 + (100 - 144) * t)
-                        b = int(255 + (200 - 255) * t)
+                        r = int(0 + (34 - 0) * t)
+                        g = int(100 + (139 - 100) * t)
+                        b = int(0 + (34 - 0) * t)
                     elif betweenness < 0.66:
                         t = (betweenness - 0.33) / 0.33
-                        r = int(0 + (0 - 0) * t)
-                        g = int(100 + (200 - 100) * t)
-                        b = int(200 + (255 - 200) * t)
+                        r = int(34 + (50 - 34) * t)
+                        g = int(139 + (205 - 139) * t)
+                        b = int(34 + (50 - 34) * t)
                     else:
                         t = (betweenness - 0.66) / 0.34
-                        r = int(0 + (64 - 0) * t)
-                        g = int(200 + (224 - 200) * t)
-                        b = int(255 + (208 - 255) * t)
+                        r = int(50 + (124 - 50) * t)
+                        g = int(205 + (252 - 205) * t)
+                        b = int(50 + (0 - 50) * t)
                 else:  # GGI
-                    # GGI: 빨간색/주황색 계열
+                    # GGI: 노란색 계열
                     if betweenness < 0.33:
                         t = betweenness / 0.33
-                        r = int(220 + (255 - 220) * t)
-                        g = int(20 + (140 - 20) * t)
-                        b = int(60 + (0 - 60) * t)
+                        r = int(255 + (255 - 255) * t)
+                        g = int(165 + (215 - 165) * t)
+                        b = int(0 + (0 - 0) * t)
                     elif betweenness < 0.66:
                         t = (betweenness - 0.33) / 0.33
                         r = int(255 + (255 - 255) * t)
-                        g = int(140 + (200 - 140) * t)
+                        g = int(215 + (255 - 215) * t)
                         b = int(0 + (0 - 0) * t)
                     else:
                         t = (betweenness - 0.66) / 0.34
                         r = int(255 + (255 - 255) * t)
-                        g = int(200 + (255 - 200) * t)
-                        b = int(0 + (0 - 0) * t)
+                        g = int(255 + (255 - 255) * t)
+                        b = int(0 + (224 - 0) * t)
                 color = f"rgb({r}, {g}, {b})"
             else:
                 # 기본 색상: 네트워크 타입에 따라
                 if network_type == 'PPI':
-                    color = "#6495ED"  # 코른플라워 블루
+                    color = "#228B22"  # 포레스트 그린
                 else:
-                    color = "#FF8C00"  # 다크 오렌지
+                    color = "#FFD700"  # 골드
             border_width = 2
         
         # 초기 위치 설정 (안정화를 위해)
@@ -410,39 +410,39 @@ def create_3d_network(graph, centrality_df, selected_nodes=None, max_nodes=200, 
     def get_color_from_betweenness(betweenness, network_type):
         """Betweenness centrality와 네트워크 타입에 따라 색상 반환"""
         if network_type == 'PPI':
-            # PPI: 파란색 계열 그라데이션 (파란색 -> 청록색 -> 시안색)
+            # PPI: 초록색 계열 그라데이션 (어두운 초록 -> 밝은 초록 -> 라임 그린)
             if betweenness < 0.33:
                 t = betweenness / 0.33
-                r = int(30 + (0 - 30) * t)
-                g = int(144 + (100 - 144) * t)
-                b = int(255 + (200 - 255) * t)
+                r = int(0 + (34 - 0) * t)
+                g = int(100 + (139 - 100) * t)
+                b = int(0 + (34 - 0) * t)
             elif betweenness < 0.66:
                 t = (betweenness - 0.33) / 0.33
-                r = int(0 + (0 - 0) * t)
-                g = int(100 + (200 - 100) * t)
-                b = int(200 + (255 - 200) * t)
+                r = int(34 + (50 - 34) * t)
+                g = int(139 + (205 - 139) * t)
+                b = int(34 + (50 - 34) * t)
             else:
                 t = (betweenness - 0.66) / 0.34
-                r = int(0 + (64 - 0) * t)
-                g = int(200 + (224 - 200) * t)
-                b = int(255 + (208 - 255) * t)
+                r = int(50 + (124 - 50) * t)
+                g = int(205 + (252 - 205) * t)
+                b = int(50 + (0 - 50) * t)
         else:  # GGI
-            # GGI: 빨간색/주황색 계열 그라데이션 (빨간색 -> 주황색 -> 노란색)
+            # GGI: 노란색 계열 그라데이션 (주황 노란색 -> 노란색 -> 밝은 노란색)
             if betweenness < 0.33:
                 t = betweenness / 0.33
-                r = int(220 + (255 - 220) * t)
-                g = int(20 + (140 - 20) * t)
-                b = int(60 + (0 - 60) * t)
+                r = int(255 + (255 - 255) * t)
+                g = int(165 + (215 - 165) * t)
+                b = int(0 + (0 - 0) * t)
             elif betweenness < 0.66:
                 t = (betweenness - 0.33) / 0.33
                 r = int(255 + (255 - 255) * t)
-                g = int(140 + (200 - 140) * t)
+                g = int(215 + (255 - 215) * t)
                 b = int(0 + (0 - 0) * t)
             else:
                 t = (betweenness - 0.66) / 0.34
                 r = int(255 + (255 - 255) * t)
-                g = int(200 + (255 - 200) * t)
-                b = int(0 + (0 - 0) * t)
+                g = int(255 + (255 - 255) * t)
+                b = int(0 + (224 - 0) * t)
         return f'rgb({r}, {g}, {b})'
     
     for i, node in enumerate(nodes_list):
@@ -457,9 +457,9 @@ def create_3d_network(graph, centrality_df, selected_nodes=None, max_nodes=200, 
         else:
             # 기본 색상: 네트워크 타입에 따라
             if network_type == 'PPI':
-                node_colors.append('rgb(100, 149, 237)')  # 코른플라워 블루
+                node_colors.append('rgb(34, 139, 34)')  # 포레스트 그린
             else:
-                node_colors.append('rgb(255, 140, 0)')  # 다크 오렌지
+                node_colors.append('rgb(255, 215, 0)')  # 골드
             node_sizes.append(8)
         
         # 툴팁 텍스트
@@ -499,9 +499,9 @@ def create_3d_network(graph, centrality_df, selected_nodes=None, max_nodes=200, 
     
     # 엣지 추가 (네트워크 타입에 따른 색상)
     if network_type == 'PPI':
-        edge_color = 'rgba(100, 149, 237, 0.3)'  # 코른플라워 블루
+        edge_color = 'rgba(34, 139, 34, 0.3)'  # 포레스트 그린
     else:
-        edge_color = 'rgba(255, 140, 0, 0.3)'  # 다크 오렌지
+        edge_color = 'rgba(255, 215, 0, 0.3)'  # 골드
     
     fig.add_trace(go.Scatter3d(
         x=edge_x, y=edge_y, z=edge_z,
@@ -726,7 +726,7 @@ def render_network_tab(network_type, network_data, selected_node_key, prefix='au
                 graph, centrality_df, selected_nodes, max_nodes, 
                 layout_method=layout_method, network_type=network_type
             )
-        st.plotly_chart(fig_3d, width='stretch', config={'displayModeBar': True, 'displaylogo': False})
+        st.plotly_chart(fig_3d, config={'displayModeBar': True, 'displaylogo': False, 'responsive': True})
         st.caption(f"표시된 노드: {len(displayed_nodes)}개 (전체 {len(graph.nodes())}개 중)")
     else:
         # 2D 인터랙티브 네트워크
@@ -782,11 +782,59 @@ def render_network_tab(network_type, network_data, selected_node_key, prefix='au
         st.subheader("📈 중심성 분포")
         
         if centrality_df is not None and not centrality_df.empty:
-            st.bar_chart(centrality_df.nlargest(20, 'Betweenness')['Betweenness'])
-            st.caption("Top 20 Betweenness Centrality")
+            # 네트워크 타입에 따른 색상 설정
+            if network_type == 'PPI':
+                bar_color = 'rgb(34, 139, 34)'  # 포레스트 그린
+            else:
+                bar_color = 'rgb(255, 215, 0)'  # 골드
             
-            st.bar_chart(centrality_df.nlargest(20, 'Degree')['Degree'])
-            st.caption("Top 20 Degree Centrality")
+            # Betweenness Centrality 차트
+            top_betweenness = centrality_df.nlargest(20, 'Betweenness')['Betweenness']
+            fig_betweenness = go.Figure(data=[
+                go.Bar(
+                    x=top_betweenness.index,
+                    y=top_betweenness.values,
+                    marker_color=bar_color,
+                    text=top_betweenness.values,
+                    texttemplate='%{text:.4f}',
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Betweenness: %{y:.4f}<extra></extra>'
+                )
+            ])
+            fig_betweenness.update_layout(
+                title="Top 20 Betweenness Centrality",
+                xaxis_title="Node",
+                yaxis_title="Betweenness Centrality",
+                height=250,
+                showlegend=False,
+                margin=dict(l=0, r=0, t=40, b=0)
+            )
+            fig_betweenness.update_xaxes(tickangle=-45)
+            st.plotly_chart(fig_betweenness, config={'displayModeBar': False, 'responsive': True})
+            
+            # Degree Centrality 차트
+            top_degree = centrality_df.nlargest(20, 'Degree')['Degree']
+            fig_degree = go.Figure(data=[
+                go.Bar(
+                    x=top_degree.index,
+                    y=top_degree.values,
+                    marker_color=bar_color,
+                    text=top_degree.values,
+                    texttemplate='%{text:.4f}',
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Degree: %{y:.4f}<extra></extra>'
+                )
+            ])
+            fig_degree.update_layout(
+                title="Top 20 Degree Centrality",
+                xaxis_title="Node",
+                yaxis_title="Degree Centrality",
+                height=250,
+                showlegend=False,
+                margin=dict(l=0, r=0, t=40, b=0)
+            )
+            fig_degree.update_xaxes(tickangle=-45)
+            st.plotly_chart(fig_degree, config={'displayModeBar': False, 'responsive': True})
             
             # 상위 중심성 노드 목록
             st.markdown("#### 상위 Betweenness Centrality 노드")
