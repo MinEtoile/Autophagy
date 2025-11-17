@@ -2,9 +2,11 @@
 Autophagy realated PPI and GGI network analysis
 
 
-# Autophagy Biological Network Analysis Viewer - 웹 인터페이스
+# Autophagy Biological Network Analysis Viewer
 
-인터랙티브한 네트워크 분석 웹 뷰어입니다. PPI와 GGI 네트워크를 2D/3D로 시각화하고, 노드를 클릭하여 상세 정보를 확인할 수 있습니다. Total과 Research 데이터셋을 모두 지원합니다.
+인터랙티브한 네트워크 분석 웹 뷰어입니다. PPI와 GGI 네트워크를 2D/3D로 시각화하고, 노드를 클릭하여 상세 정보를 확인할 수 있습니다. 
+Total:전체 오토파지 데이터
+Research: 연구에 활용된 오토파지 데이터
 
 
 ## 주요 기능
