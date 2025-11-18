@@ -649,7 +649,8 @@ def render_network_tab(network_type, network_data, selected_node_key, prefix='au
             selected_node = None
             st.session_state[selected_node_key] = None
     else:
-        node_options = [''] + all_nodes[:100]
+        # 전체 노드를 선택할 수 있도록 (검색어가 없을 때)
+        node_options = [''] + all_nodes
         default_index = 0
         if st.session_state[selected_node_key] in node_options:
             default_index = node_options.index(st.session_state[selected_node_key])
